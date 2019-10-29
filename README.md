@@ -18,7 +18,7 @@ Some features are:
 
 ## Installation
 
-Start by checking if node and npm is insatlled.
+Start by checking if node and npm is installed.
 
 ```bash
 node -v
