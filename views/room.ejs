@@ -1,0 +1,145 @@
+<%- include("header", {title: title}); %>
+<div class="center"><h1>micro:bit Room controller<h1></div>
+<div class="container">
+<div class="row">
+<div class="col">
+<p>
+<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#roomController" aria-expanded="false" aria-controls="roomController">
+Room controller
+</button>
+<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#savedRooms" aria-expanded="false" aria-controls="savedRooms">
+Saved rooms
+</button>
+<a class="btn btn-primary" href="/" role="button">Back</a>
+</p>
+<div class="collapse" id="roomController">
+<div class="card card-body">
+<label for="chosesensor">Choose sensor: </label>
+    <select id="sensornum" name="sensornum">
+    <% for (const row of sensors) { %>
+        <option value="<%= row.sensor_id %>"><%= row.sensor_id %></option>
+    <% }; %>
+    </select>
+    <br>
+<div class="btn-group" role="group" aria-label="Basic example">
+  <button type="button" id="sensorbtn" class="btn btn-primary btn-sm">Spawn sensor</button>
+  <button type="button" id="sensorplace" class="btn btn-success btn-sm">Place sensor</button>
+  <button type="button" id="sensordelete" class="btn btn-danger btn-sm">Delete sensor</button>
+</div>
+<br>
+<form method="post" action="/room">
+  <div class="form-group">
+    <label for="roomname">Room name*: </label>
+    <input type="text" class="form-control" id="roomname" name="roomname" value="<%= room[0].name %>" required>
+  </div>
+  <div class="form-group">
+      <label for="channel">Room channel*: </label>
+      <input type="number" class="form-control" id="channel" name="channel" value="<%= room[0].channel %>" required>
+  </div>
+  <div class="form-group">
+      <label for="height">Height*: </label>
+      <input type="number" class="form-control" id="height" name="height" value="<%= room[0].height %>" required>
+  </div>
+  <div class="form-group">
+      <label for="width">Width*: </label>
+      <input type="number" class="form-control" id="width" name="width" value="<%= room[0].width %>" required>
+  </div>
+  <input type="hidden" id="sensordata" name="sensordata">
+  <p>*Required</p>
+  <div class="btn-group" role="group" aria-label="Basic example">
+    <button type="button" id="room" class="btn btn-primary btn-sm">Update room</button>
+    <button type="submit" class="btn btn-success btn-sm">Save room</button>
+    <a class="btn btn-danger btn-sm" href="/delete/<%= room[0].channel %>/<%= room[0].name %>" role="button">Delete room</a>
+  </div>
+</form>
+<br>
+</div>
+</div>
+<div class="collapse" id="savedRooms">
+<div class="card card-body">
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th scope="col">Room name</th>
+          <th scope="col">Channel</th>
+        </tr>
+      </thead>
+      <tbody>
+    <% for (const row of rooms) { %>
+    <tr>
+        <td><%= row.name %></td>
+        <td><%= row.channel %></td>
+        <td><a class="btn btn-success btn-sm" href="/room/<%= row.channel %>" role="button">Select room</a></td>
+    </tr>
+    <% }; %>
+      </tbody>
+    </table>
+<br>
+</div>
+</div>
+</div>
+<div class="col-8">
+<div id="myroomname" class="center"></div>
+<div class="target"></div>
+<p>
+<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#histogram" aria-expanded="false" aria-controls="histogram">
+Show histogram
+</button>
+<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#showdata" aria-expanded="false" aria-controls="showdata">
+Show data
+</button>
+</p>
+<div class="collapse" id="histogram">
+<div class="card card-body">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Sensor id</th>
+          <th scope="col">Temperature</th>
+          <th scope="col">Light level</th>
+          <th scope="col">Data captured</th>
+          <th scope="col">Channel</th>
+        </tr>
+      </thead>
+      <tbody>
+<% for (const row of histogram) { %>
+    <tr>
+        <td><%= row.ID %></td>
+        <td><%= row.Tempature %></td>
+        <td><%= row.Light %></td>
+        <td><%= row.Uploaded %></td>
+        <td><%= row.Channel %></td>
+    </tr>
+<% }; %>
+      </tbody>
+    </table>
+</div>
+</div>
+<div class="collapse" id="showdata">
+<div class="card card-body">
+<p>
+<button type="button" id="sensorselectedbtn" class="btn btn-success btn-sm">Get selected sensor</button>
+</p>
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th scope="col">Temperature</th>
+          <th scope="col">Light level</th>
+          <th scope="col">Data captured</th>
+        </tr>
+      </thead>
+      <tbody id="sensortarget">
+      </tbody>
+    </table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<% for (const row of sensors2) { %>
+    <input type="hidden" class="hiddensensorid" value="<%= row.sensor_id %>">
+    <input type="hidden" class="hiddensensorx" value="<%= row.sensor_x %>">
+    <input type="hidden" class="hiddensensory" value="<%= row.sensor_y %>">
+<% }; %>
+
+<%- include("footer2"); %>

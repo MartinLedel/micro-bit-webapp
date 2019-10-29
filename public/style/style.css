@@ -1,0 +1,54 @@
+body {
+    padding-top: 1em;
+    padding-bottom: 0.5em;
+}
+
+input {
+    width: 100%;
+}
+
+select {
+    width: 25%;
+}
+
+.center {
+    text-align: center;
+}
+
+.box {
+    border: 5px solid black;
+    background-color: white;
+    margin: 0 auto;
+}
+
+.sensor {
+    width: 2em;
+    height: 2em;
+    border: 1px solid red;
+    text-align: center;
+    position:absolute;
+}
+
+.selected {
+    outline: 10px solid blue;
+}
+
+.target {
+    position: relative;
+}
+
+.hidden {
+    display: none;
+}
+
+.hiddensensorid {
+    display: none;
+}
+
+.hiddensensorx {
+    display: none;
+}
+
+.hiddensensory {
+    display: none;
+}
