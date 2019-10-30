@@ -120,7 +120,7 @@
 
     //Function that takes the id from the choosen sensor and spawns it for the user to place in the room
     function spawnSensor() {
-        if (tempBox.classList.contains("box") && !(selectorChecker) && !(sensorArr.includes(sensorNum.value))) {
+        if (tempBox.classList.contains("box") && !(selectorChecker) && !(sensorArr.includes(sensorNum.value)) && !(sensorSavedArr.includes(sensorNum.value))) {
             selectorChecker = true;
             tempSensor = document.createElement("div");
 
@@ -163,14 +163,14 @@
             yOffset = 0;
 
             let sensorData = document.getElementById('sensordata');
-            sensorArr.push(sensorNum.value, currentX, currentY);
+            sensorArr.push(tempSensor.innerHTML, currentX, currentY);
             sensorData.value = sensorArr;
             currentX = 0;
             currentY = 0;
         }
     }
 
-    //Function that deletes either the sensor if its not saved to the databaes. Or deletes it if it is already saved
+    //Function that deletes either the sensor if its not saved to the database. Or deletes it if it is already saved
     function deleteSensor() {
         let sensorData = document.getElementById('sensordata');
         let sensorDataArr = sensorData.value.split(",");

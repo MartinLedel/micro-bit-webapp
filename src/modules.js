@@ -75,7 +75,7 @@ let microbits = {
         SET channel = ?, name = ?, width = ?, height = ?
         WHERE channel = ?;
         `;
-        res = await db.query(sql, [channel_in, roomName, width_in, height_in]);
+        res = await db.query(sql, [channel_in, roomName, width_in, height_in, channel_in]);
 
         return res;
     },

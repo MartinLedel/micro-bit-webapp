@@ -23,8 +23,8 @@ router.post("/", urlencodedParser, async (req, res) => {
     await microbits.addRoom(
         req.body.channel,
         req.body.roomname,
-        req.body.height,
-        req.body.width
+        req.body.width,
+        req.body.height
     );
 
     res.redirect(`/room/${req.body.channel}`);
@@ -65,8 +65,8 @@ router.post("/room", urlencodedParser, async (req, res) => {
         await microbits.updateRoom(
             req.body.channel,
             req.body.roomname,
-            req.body.height,
             req.body.width,
+            req.body.height
         );
     }
 
