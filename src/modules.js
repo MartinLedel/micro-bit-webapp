@@ -10,6 +10,7 @@ let db;
     });
 })();
 
+//Object with different SQL statements
 let microbits = {
     getAllData: async function() {
         let sql;

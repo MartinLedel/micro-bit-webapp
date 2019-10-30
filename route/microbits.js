@@ -6,6 +6,7 @@ const microbits = require("../src/modules.js");
 const bodyParser = require("body-parser");
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
+//Index route that shows the basic settings for creating the room and a sensor histogram
 router.get("/", async (req, res) => {
     let data = {
         title: "Welcome | micro:bits Room controller"
@@ -17,6 +18,7 @@ router.get("/", async (req, res) => {
     res.render("index", data);
 });
 
+//Post route for index that saves the room to the database and redirects to the config view
 router.post("/", urlencodedParser, async (req, res) => {
     await microbits.addRoom(
         req.body.channel,
@@ -28,6 +30,7 @@ router.post("/", urlencodedParser, async (req, res) => {
     res.redirect(`/room/${req.body.channel}`);
 });
 
+//Config route that lets the user update the room and place sensors
 router.get("/room/:channel", async (req, res) => {
     let s_channel = req.params.channel;
     let data = {
@@ -43,6 +46,7 @@ router.get("/room/:channel", async (req, res) => {
     res.render("room", data);
 });
 
+//Post route for the config view that saves the places sensors and updates the room. Redirects back to same config view
 router.post("/room", urlencodedParser, async (req, res) => {
     if (req.body.sensordata) {
         let sensorArr = req.body.sensordata.split(",");
@@ -56,7 +60,8 @@ router.post("/room", urlencodedParser, async (req, res) => {
                 sensorArr[i++]
             );
         }
-    } else if (req.body.channel || req.body.roomname || req.body.height || req.body.width) {
+    }
+    if (req.body.channel || req.body.roomname || req.body.height || req.body.width) {
         await microbits.updateRoom(
             req.body.channel,
             req.body.roomname,
@@ -68,6 +73,7 @@ router.post("/room", urlencodedParser, async (req, res) => {
     res.redirect(`/room/${req.body.channel}`);
 });
 
+//A route that deletes the room and redirects back to the index view
 router.get("/delete/:channel/:roomname", urlencodedParser, async (req, res) => {
     await microbits.deleteRoom(
         req.params.channel,
@@ -77,6 +83,7 @@ router.get("/delete/:channel/:roomname", urlencodedParser, async (req, res) => {
     res.redirect("/");
 });
 
+//A route that gets the sensor id and channel and requests from the database. Sends it back to the view as JSON
 router.get("/getsensor", async (req, res) => {
     let s_id = req.query.id;
     let s_channel = req.query.channel;
@@ -87,6 +94,7 @@ router.get("/getsensor", async (req, res) => {
     res.json(response);
 });
 
+//A route that deletes the sensor from the room on the database
 router.get("/deletesensor", async (req, res) => {
     let s_id = req.query.id;
     let s_channel = req.query.channel;

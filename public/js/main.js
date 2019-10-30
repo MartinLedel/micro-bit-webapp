@@ -1,6 +1,7 @@
 (function () {
     'use strict';
 
+    // Different DOM elements for getting inputs
     var roomBtn = document.getElementById('room');
     var height = document.getElementById('height');
     var width = document.getElementById('width');
@@ -11,7 +12,8 @@
     var tempBox = document.createElement("div");
 
     roomBtn.addEventListener("click", createRoom);
-    
+
+    //Function for a addEventListener were it takes the user inputs and draw a room.
     function createRoom() {
         if (height.value && width.value && roomName.value && roomChannel.value) {
             myRoomNameDiv.innerHTML = "<p>" + roomName.value + "</p>";
