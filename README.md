@@ -38,12 +38,8 @@ With that out of the way you have to install the modules from the package.json.
 npm install
 ```
 
-The webapp utilizes a database to push and pull data from. That has to be configured. Go to from the app root directory:
-```
-./db
-```
-
-And create a file called config.json. Paste these line in that file.
+The webapp utilizes a database to push and pull data from. That has to be configured. Go to the webapp root directory
+and create the following structure db/config.json. Paste these line in config.json.
 
 ```
 {
