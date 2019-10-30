@@ -40,16 +40,18 @@ npm install
 
 The webapp utilizes a database to push and pull data from. That has to be configured. Go to from the app root directory:
 ```
-db/config.json
+./db
 ```
-Here it will look like this:
+
+And create a file called config.json. Paste these line in that file.
+
 ```
 {
-    "host":     "remotemysql.com", //Change to localhost for a local database.
-    "port":     "3306", //Change to 8080 if you are using localhost.
-    "user":     "krdhoQPq09", //Change to the local MySQL database username.
-    "password": "sjMY2t9R4J", //Change to the local MySQL database password.
-    "database": "krdhoQPq09", //Change to the local MySQL database name.
+    "host":     "localhost", //Change to something like remotemysql.com if you are using a non local database.
+    "port":     "8080", //Change to the desired port if you are using a non local database.
+    "user":     "user", //Change to the username for the database.
+    "password": "pass", //Change to the password for the database.
+    "database": "microbits", //Change to the name you gave the database.
     "multipleStatements": true //Dont change.
 }
 
