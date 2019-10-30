@@ -45,7 +45,7 @@ db/config.json
 Here it will look like this:
 ```
 {
-    "host":     "remotemysql.com", //change to localhost for a local database.
+    "host":     "remotemysql.com", //Change to localhost for a local database.
     "port":     "3306", //Change to 8080 if you are using localhost.
     "user":     "krdhoQPq09", //Change to the local MySQL database username.
     "password": "sjMY2t9R4J", //Change to the local MySQL database password.
